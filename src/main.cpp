@@ -1,3 +1,22 @@
+/*! \file
+\brief The main file of the print_ip program,
+
+The print_ip program takes no CLI parameters. When run, it outputs
+a number of lines corresponding to output of (fictitious) IP addresses,
+as required by the OTUS homework assignment 04.
+
+The supposed output is as follows:
+
+    255
+    0.0
+    127.0.0.1
+    123.45.67.89.101.112.131.41
+    trololo
+    1.2.3.4.5.6
+    42.21.0
+    0.1.2.3
+*/
+
 #include "output_ip.h"
 
 #include <iostream>

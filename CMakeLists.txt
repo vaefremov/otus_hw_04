@@ -96,6 +96,7 @@ enable_testing()
 add_test(test_integral bin/test_integral)
 add_test(test_string bin/test_string)
 add_test(test_iterables bin/test_iterables)
+add_test(test_tuple bin/test_tuple)
 
 install(TARGETS print_ip RUNTIME DESTINATION bin)
 

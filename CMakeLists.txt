@@ -60,11 +60,27 @@ target_link_libraries(test_string
     ${CMAKE_THREAD_LIBS_INIT}
 )
 
+add_executable(test_iterables tests/test_iterables.cpp)
+target_include_directories(test_iterables
+    PRIVATE 
+    "include"
+    "src"
+    "${CMAKE_BINARY_DIR}" "${CMAKE_HOME_DIRECTORY}"
+    "${GTEST_INCLUDE_DIR}"
+)
+target_link_libraries(test_iterables
+    # utilities
+    ${GTEST_LIBRARIES}
+    ${GTEST_MAIN_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
+)
+
 
 
 enable_testing()
 add_test(test_integral bin/test_integral)
 add_test(test_string bin/test_string)
+add_test(test_iterables bin/test_iterables)
 
 install(TARGETS print_ip RUNTIME DESTINATION bin)
 

@@ -69,7 +69,8 @@ void print_ip<std::string>(std::string const& ip, std::ostream& out, bool add_en
         out << std::endl;
 }
 
-inline void print_ip(std::tuple<int, int, int, int> const& ip, std::ostream& out, bool add_endline = true)
+template<typename T>
+void print_ip(std::tuple<T, T, T, T> const& ip, std::ostream& out, bool add_endline = true)
 {
     out << std::get<0>(ip) << "." << std::get<1>(ip) << "." << std::get<2>(ip) << "." << std::get<3>(ip);
     if(add_endline)

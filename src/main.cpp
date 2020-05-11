@@ -22,4 +22,7 @@ int main()
     OTUS::print_ip(ip_int, std::cout);
     OTUS::print_ip(ip_long, std::cout);
     OTUS::print_ip(ip_string, std::cout);
+    OTUS::print_ip(ip_vector, std::cout);
+    OTUS::print_ip(ip_list, std::cout);
+    OTUS::print_ip(ip_tuple, std::cout);
 }

@@ -16,7 +16,6 @@ TEST(Utilities, integral_int)
     print_ip(in, str, false);
     std::string exp{"0.0.4.210"};
     std::string res = str.str();
-    std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
 }
 
@@ -27,7 +26,6 @@ TEST(Utilities, integral_int2)
     print_ip(in, str, false);
     std::string exp{"127.0.0.1"};
     std::string res = str.str();
-    std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
 }
 
@@ -38,7 +36,6 @@ TEST(Utilities, integral_char)
     print_ip(in, str, false);
     std::string exp{"255"};
     std::string res = str.str();
-    std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
 }
 
@@ -49,7 +46,6 @@ TEST(Utilities, integral_short)
     print_ip(in, str, false);
     std::string exp{"0.0"};
     std::string res = str.str();
-    std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
 }
 
@@ -60,6 +56,5 @@ TEST(Utilities, integral_long)
     print_ip(in, str, false);
     std::string exp{"123.45.67.89.101.112.131.41"};
     std::string res = str.str();
-    std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
 }

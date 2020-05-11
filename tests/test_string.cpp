@@ -16,7 +16,6 @@ TEST(Utilities, string)
     print_ip(in, str, false);
     std::string exp{"trololo"};
     std::string res = str.str();
-    std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
 }
 

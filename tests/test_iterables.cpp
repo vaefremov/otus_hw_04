@@ -19,7 +19,6 @@ TEST(Utilities, vector_int)
 
     std::string exp{"1.2.3.4.5.6"};
     std::string res = str.str();
-    std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
 }
 
@@ -32,6 +31,5 @@ TEST(Utilities, list_int)
 
     std::string exp{"1.2.3.4.5.6"};
     std::string res = str.str();
-    std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
 }

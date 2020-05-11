@@ -75,6 +75,21 @@ target_link_libraries(test_iterables
     ${CMAKE_THREAD_LIBS_INIT}
 )
 
+add_executable(test_tuple tests/test_tuple.cpp)
+target_include_directories(test_tuple
+    PRIVATE 
+    "include"
+    "src"
+    "${CMAKE_BINARY_DIR}" "${CMAKE_HOME_DIRECTORY}"
+    "${GTEST_INCLUDE_DIR}"
+)
+target_link_libraries(test_tuple
+    # utilities
+    ${GTEST_LIBRARIES}
+    ${GTEST_MAIN_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
+)
+
 
 
 enable_testing()

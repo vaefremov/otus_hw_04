@@ -11,7 +11,7 @@
 
 using namespace OTUS;
 
-TEST(Utilities, vector_int)
+TEST(Utilities, tuple_int)
 {
     std::tuple<int, int, int, int> in{1, 2, 3, 4};
     std::ostringstream str;
@@ -22,4 +22,19 @@ TEST(Utilities, vector_int)
     std::string res = str.str();
     std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
+
 }
+// The following test doesn't compile!
+//
+// TEST(Utilities, tuple_diff)
+// {
+//     std::tuple<int, int, int, long> in{1, 2, 3, 4};
+//     std::ostringstream str;
+
+//     print_ip(in, str, false);
+
+//     std::string exp{"1.2.3.4"};
+//     std::string res = str.str();
+//     std::cout << "DEBUG" << res << std::endl;
+//     ASSERT_EQ(exp, res);
+// }

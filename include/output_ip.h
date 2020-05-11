@@ -30,7 +30,7 @@ using is_iterable = decltype(detail::is_iterable_impl<T>(0));
 
 
 template<typename T>
-std::enable_if_t<std::is_integral_v<T>, void>
+typename std::enable_if<std::is_integral<T>::value, void>::type
 print_ip(T ip, std::ostream& out, bool add_endline = true)
 {
     char* ip_bytes = reinterpret_cast<char*>(&ip);
@@ -45,7 +45,7 @@ print_ip(T ip, std::ostream& out, bool add_endline = true)
 }
 
 template<typename T>
-std::enable_if_t<is_iterable<T>::value, void>
+typename std::enable_if<is_iterable<T>::value, void>::type
 print_ip(T const& ip, std::ostream& out, bool add_endline = true)
 {
     bool starting{true};

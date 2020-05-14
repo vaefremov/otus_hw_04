@@ -1,0 +1,25 @@
+{
+	"package": {
+		"name": "print_ip",
+		"repo": "otus_hw",
+		"subject": "vaefremov",
+		"vcs_url": "https://github.com/vaefremov/otus_hw_04/",
+		"licenses": ["BSD"]
+	},
+	"version": {
+		"name": "${PROJECT_VERSION}"
+	},
+	"files": [
+		{
+			"includePattern": "./${CPACK_PACKAGE_FILE_NAME}.deb",
+			"uploadPattern": "${CPACK_PACKAGE_FILE_NAME}.deb",
+			"matrixParams": {
+				"deb_distribution": "trusty",
+				"deb_component": "main",
+				"deb_architecture": "amd64"
+			}
+		}
+	],
+	"publish": true,
+	"override": false
+}

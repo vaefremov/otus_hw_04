@@ -90,8 +90,6 @@ target_link_libraries(test_tuple
     ${CMAKE_THREAD_LIBS_INIT}
 )
 
-
-
 enable_testing()
 add_test(test_integral bin/test_integral)
 add_test(test_string bin/test_string)
@@ -109,3 +107,5 @@ set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 set(CPACK_PACKAGE_CONTACT vefremov@gmail.com)
 
 include(CPack)
+
+configure_file(bintray-descriptor.json ${CMAKE_BINARY_DIR}/bintray-descriptor.json)

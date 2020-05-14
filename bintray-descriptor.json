@@ -11,8 +11,8 @@
 	},
 	"files": [
 		{
-			"includePattern": "${CMAKE_BINARY_DIR}/${CPACK_PACKAGE_FILE_NAME}.deb",
-			"uploadPattern": "${CPACK_PACKAGE_FILE_NAME}.deb",
+			"includePattern": "${CMAKE_BINARY_DIR}/print_ip-${VERSION_NUMBER}-Linux.deb",
+			"uploadPattern": "print_ip-${VERSION_NUMBER}-Linux.deb",
 			"matrixParams": {
 				"deb_distribution": "trusty",
 				"deb_component": "main",

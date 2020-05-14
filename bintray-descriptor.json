@@ -11,7 +11,7 @@
 	},
 	"files": [
 		{
-			"includePattern": "./${CPACK_PACKAGE_FILE_NAME}.deb",
+			"includePattern": "${CMAKE_BINARY_DIR}/${CPACK_PACKAGE_FILE_NAME}.deb",
 			"uploadPattern": "${CPACK_PACKAGE_FILE_NAME}.deb",
 			"matrixParams": {
 				"deb_distribution": "trusty",

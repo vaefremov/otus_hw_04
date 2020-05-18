@@ -13,7 +13,7 @@ TEST(Utilities, string)
 {
     std::string in{"trololo"};
     std::ostringstream str;
-    print_ip(in, str, false);
+    print_ip(in, str);
     std::string exp{"trololo"};
     std::string res = str.str();
     ASSERT_EQ(exp, res);

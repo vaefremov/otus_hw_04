@@ -37,14 +37,15 @@ int main()
     std::tuple<int, int, int, int> ip_tuple = std::make_tuple(0, 1, 2, 3);
     std::tuple<int, int, int, long> ip_tuple_wrong = std::make_tuple(0, 1, 2, 3);
 
-    OTUS::print_ip(ip_char, std::cout);
-    OTUS::print_ip(ip_short, std::cout);
-    OTUS::print_ip(ip_int, std::cout);
-    OTUS::print_ip(ip_long, std::cout);
-    OTUS::print_ip(ip_string, std::cout);
-    OTUS::print_ip(ip_vector, std::cout);
-    OTUS::print_ip(ip_list, std::cout);
-    OTUS::print_ip(ip_tuple, std::cout);
+    OTUS::print_ip_with_endline(ip_char, std::cout);
+    OTUS::print_ip_with_endline(ip_short, std::cout);
+    OTUS::print_ip_with_endline(ip_int, std::cout);
+    OTUS::print_ip_with_endline(ip_long, std::cout);
+    OTUS::print_ip_with_endline(ip_string, std::cout);
+    OTUS::print_ip_with_endline(ip_vector, std::cout);
+    OTUS::print_ip_with_endline(ip_list, std::cout);
+    OTUS::print_ip_with_endline(ip_tuple, std::cout);
     // The following line is not compilable (tuple must have coinciding types of all elements):
     // OTUS::print_ip(ip_tuple_wrong, std::cout);
+
 }

@@ -15,7 +15,7 @@ TEST(Utilities, vector_int)
     std::vector<int> in{1, 2, 3, 4, 5, 6};
     std::ostringstream str;
 
-    print_ip(in, str, false);
+    print_ip(in, str);
 
     std::string exp{"1.2.3.4.5.6"};
     std::string res = str.str();
@@ -27,7 +27,7 @@ TEST(Utilities, list_int)
     std::list<int> in{1, 2, 3, 4, 5, 6};
     std::ostringstream str;
 
-    print_ip(in, str, false);
+    print_ip(in, str);
 
     std::string exp{"1.2.3.4.5.6"};
     std::string res = str.str();

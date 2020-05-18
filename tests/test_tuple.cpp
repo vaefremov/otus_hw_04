@@ -16,7 +16,7 @@ TEST(Utilities, tuple_int)
     std::tuple<int, int, int, int> in{1, 2, 3, 4};
     std::ostringstream str;
 
-    print_ip(in, str, false);
+    print_ip(in, str);
 
     std::string exp{"1.2.3.4"};
     std::string res = str.str();

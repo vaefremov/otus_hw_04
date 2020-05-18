@@ -31,7 +31,7 @@ using is_iterable = decltype(detail::is_iterable_impl<T>(0));
 
 template<typename T>
 typename std::enable_if<std::is_integral<T>::value, void>::type
-print_ip(T ip, std::ostream& out, bool add_endline = true)
+print_ip(T ip, std::ostream& out)
 {
     char* ip_bytes = reinterpret_cast<char*>(&ip);
     for (size_t i = 0; i < sizeof(ip); i++)
@@ -40,13 +40,11 @@ print_ip(T ip, std::ostream& out, bool add_endline = true)
             out << ".";
         out << (0xFF & ip_bytes[sizeof(ip) - i -1]) ;
     }
-    if(add_endline)
-        out << std::endl;
 }
 
 template<typename T>
 typename std::enable_if<is_iterable<T>::value, void>::type
-print_ip(T const& ip, std::ostream& out, bool add_endline = true)
+print_ip(T const& ip, std::ostream& out)
 {
     bool starting{true};
     for(auto const & v: ip)
@@ -57,25 +55,25 @@ print_ip(T const& ip, std::ostream& out, bool add_endline = true)
             starting = false;        
         out << v;
     }
-    if(add_endline)
-        out << std::endl;
 }
 
 template<>
-void print_ip<std::string>(std::string const& ip, std::ostream& out, bool add_endline)
+void print_ip<std::string>(std::string const& ip, std::ostream& out)
 {
     out <<  ip;
-    if(add_endline)
-        out << std::endl;
 }
 
 template<typename T>
-void print_ip(std::tuple<T, T, T, T> const& ip, std::ostream& out, bool add_endline = true)
+void print_ip(std::tuple<T, T, T, T> const& ip, std::ostream& out)
 {
     out << std::get<0>(ip) << "." << std::get<1>(ip) << "." << std::get<2>(ip) << "." << std::get<3>(ip);
-    if(add_endline)
-        out << std::endl;
 }
 
+template<typename T>
+void print_ip_with_endline(T ip, std::ostream& out)
+{
+    print_ip(ip, out);
+    out << std::endl;
+}
 
 }

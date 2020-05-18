@@ -2,32 +2,11 @@
 
 #include <ostream>
 #include <iomanip>
+#include <vector>
+#include <list>
 
 namespace OTUS
 {
-
-
-namespace detail
-{
-    using std::begin;
-    using std::end;
- 
-    template <typename T>
-    auto is_iterable_impl(int)
-    -> decltype (
-        begin(std::declval<T&>()) != end(std::declval<T&>()), // begin/end and operator !=
-        ++std::declval<decltype(begin(std::declval<T&>()))&>(), // operator ++
-        *begin(std::declval<T&>()), // operator*
-        std::true_type{});
- 
-    template <typename T>
-    std::false_type is_iterable_impl(...);
- 
-}
- 
-template <typename T>
-using is_iterable = decltype(detail::is_iterable_impl<T>(0));
-
 
 template<typename T>
 typename std::enable_if<std::is_integral<T>::value, void>::type
@@ -43,7 +22,9 @@ print_ip(T ip, std::ostream& out)
 }
 
 template<typename T>
-typename std::enable_if<is_iterable<T>::value, void>::type
+typename std::enable_if<std::is_same<typename std::vector<typename T::value_type>, T>::value || 
+                        std::is_same<typename std::list<typename T::value_type>, T>::value, 
+                                            void>::type
 print_ip(T const& ip, std::ostream& out)
 {
     bool starting{true};
@@ -57,8 +38,9 @@ print_ip(T const& ip, std::ostream& out)
     }
 }
 
-template<>
-void print_ip<std::string>(std::string const& ip, std::ostream& out)
+template<typename T>
+std::enable_if_t<std::is_same<T, std::basic_string<typename T::value_type>>::value, void>
+print_ip(T ip, std::ostream& out)
 {
     out <<  ip;
 }

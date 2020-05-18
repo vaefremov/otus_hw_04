@@ -54,6 +54,8 @@ TEST(Utilities, integral_long)
     long in{8875824491850138409};
     std::ostringstream str;
     print_ip(in, str);
+    // Note: we are using the LSB order of bytes in a long constant, whence the expected string.
+    // Actually, we should take into consideration the byte order on the current processor.
     std::string exp{"123.45.67.89.101.112.131.41"};
     std::string res = str.str();
     ASSERT_EQ(exp, res);

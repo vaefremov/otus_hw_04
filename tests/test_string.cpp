@@ -19,3 +19,15 @@ TEST(Utilities, string)
     ASSERT_EQ(exp, res);
 }
 
+TEST(Utilities, string_with_endline)
+{
+    std::string in{"trololo"};
+    std::ostringstream str;
+    std::ostringstream str_exp;
+    str_exp << in << std::endl;
+    print_ip_with_endline(in, str);
+    std::string exp = str_exp.str();
+    std::string res = str.str();
+    ASSERT_EQ(exp, res);
+}
+

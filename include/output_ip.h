@@ -53,8 +53,8 @@ template<bool...> struct bool_pack{};
 template<typename... Ts>
 using conjunction = std::is_same<bool_pack<true,Ts::value...>, bool_pack<Ts::value..., true>>;
 
-template<typename... Ts>
-using AllInts = typename std::enable_if<conjunction<std::is_convertible<Ts, int>...>::value>::type;
+template<typename T0, typename... Ts>
+using AllEq = typename std::enable_if<conjunction<std::is_same<Ts, T0>...>::value>::type;
 
 template<typename Tuple, std::size_t N>
 struct TuplePrinter {
@@ -73,10 +73,10 @@ struct TuplePrinter<Tuple, 1> {
     }
 };
 
-template<typename... Args, typename = AllInts<Args...>>
-void print_ip(const std::tuple<Args...>& t, std::ostream& out)
+template<typename T0, typename... Args, typename = AllEq<T0, Args...>>
+void print_ip(const std::tuple<T0, Args...>& t, std::ostream& out)
 {
-    TuplePrinter<decltype(t), sizeof...(Args)>::print(t, out);
+    TuplePrinter<decltype(t), sizeof...(Args)+1>::print(t, out);
 }
 
 template<typename T>

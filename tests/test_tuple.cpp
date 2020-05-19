@@ -20,15 +20,28 @@ TEST(Utilities, tuple_int)
 
     std::string exp{"1.2.3.4"};
     std::string res = str.str();
-    std::cout << "DEBUG" << res << std::endl;
     ASSERT_EQ(exp, res);
-
 }
-// The following test doesn't compile!
+
+// Check if print_ip works for tuples longer than 4 elements
+TEST(Utilities, tuple_int_more_than_4)
+{
+    auto in = std::make_tuple(1, 2, 3, 4, 5);
+    std::ostringstream str;
+
+    print_ip(in, str);
+
+    std::string exp{"1.2.3.4.5"};
+    std::string res = str.str();
+    ASSERT_EQ(exp, res);
+}
+
+// The following test won't compile because the 4th element
+// is not convertible to int
 //
 // TEST(Utilities, tuple_diff)
 // {
-//     std::tuple<int, int, int, long> in{1, 2, 3, 4};
+//     std::tuple<int, int, int, std::string> in{1, 2, 3, "4"};
 //     std::ostringstream str;
 
 //     print_ip(in, str, false);
@@ -38,3 +51,4 @@ TEST(Utilities, tuple_int)
 //     std::cout << "DEBUG" << res << std::endl;
 //     ASSERT_EQ(exp, res);
 // }
+

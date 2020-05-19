@@ -35,7 +35,7 @@ int main()
     std::vector<int> ip_vector{1, 2, 3, 4, 5, 6};
     std::list<int> ip_list{42, 21, 0};
     std::tuple<int, int, int, int> ip_tuple = std::make_tuple(0, 1, 2, 3);
-    std::tuple<int, int, int, long> ip_tuple_wrong = std::make_tuple(0, 1, 2, 3);
+    std::tuple<int, int, int, std::string> ip_tuple_wrong = std::make_tuple(0, 1, 2, "3");
 
     OTUS::print_ip_with_endline(ip_char, std::cout);
     OTUS::print_ip_with_endline(ip_short, std::cout);

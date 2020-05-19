@@ -1,0 +1,51 @@
+language: cpp
+branches:
+  only:
+  - master
+before_script:
+- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+- sudo apt-get update -qq
+- sudo apt install libgtest-dev -y
+- sudo apt install doxygen -y
+- sudo apt install graphviz -y
+script:
+- mkdir gtest
+- cd gtest
+- cmake /usr/src/gtest/
+- cmake --build .
+- sudo cp *.a /usr/lib/
+- cd ..
+- mkdir build
+- cd build
+- cmake  -DCMAKE_BUILD_TYPE=Release ..
+- cmake --build .
+- cmake --build . --target test
+- cmake --build . --target package
+# - curl -v -T print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uvaefremov:$BINTRAY_API_KEY "https://api.bintray.com/content/vaefremov/otus_hw/print_ip/$TRAVIS_BUILD_NUMBER/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+- cd ..
+- doxygen
+# deploy:
+deploy:
+  # - provider: script
+  #   skip_cleanup: true
+  #   script:
+  #   - curl -v -T build/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uvaefremov:$BINTRAY_API_KEY "https://api.bintray.com/content/vaefremov/otus_hw/print_ip/$TRAVIS_BUILD_NUMBER/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+  # 
+  - provider: bintray
+    file: ./build/bintray-descriptor.json
+    user: vaefremov
+    key: $BINTRAY_API_KEY
+    skip_cleanup: true
+    on:
+      branch: master
+
+  - provider: pages
+    skip_cleanup: true
+    repo: vaefremov/vaefremov.github.io
+    target_branch: master
+    verbose: true
+    github_token: $GITHUB_TOKEN
+    keep_history: true
+    local_dir: docs/html
+    on:
+      branch: master

@@ -45,10 +45,38 @@ print_ip(T ip, std::ostream& out)
     out <<  ip;
 }
 
-template<typename T>
-void print_ip(std::tuple<T, T, T, T> const& ip, std::ostream& out)
+// Printing tuples is another stuff! Requires variadic templates and recursion.
+
+// Smart method to check if all boolean values in a sequence are true, 
+// found here: https://www.fluentcpp.com/2019/01/25/variadic-number-function-parameters-type/
+template<bool...> struct bool_pack{};
+template<typename... Ts>
+using conjunction = std::is_same<bool_pack<true,Ts::value...>, bool_pack<Ts::value..., true>>;
+
+template<typename... Ts>
+using AllInts = typename std::enable_if<conjunction<std::is_convertible<Ts, int>...>::value>::type;
+
+template<typename Tuple, std::size_t N>
+struct TuplePrinter {
+    static void print(const Tuple& t, std::ostream& out) 
+    {
+        TuplePrinter<Tuple, N-1>::print(t, out);
+        out << "." << std::get<N-1>(t);
+    }
+};
+ 
+template<typename Tuple>
+struct TuplePrinter<Tuple, 1> {
+    static void print(const Tuple& t, std::ostream& out) 
+    {
+        out << std::get<0>(t);
+    }
+};
+
+template<typename... Args, typename = AllInts<Args...>>
+void print_ip(const std::tuple<Args...>& t, std::ostream& out)
 {
-    out << std::get<0>(ip) << "." << std::get<1>(ip) << "." << std::get<2>(ip) << "." << std::get<3>(ip);
+    TuplePrinter<decltype(t), sizeof...(Args)>::print(t, out);
 }
 
 template<typename T>
